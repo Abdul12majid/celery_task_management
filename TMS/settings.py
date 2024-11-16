@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
-from keys.keys import KEY, redis_conn, conn2
+from keys.keys import KEY, redis_conn
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -55,13 +55,17 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'TMS.urls'
 
 
-CELERY_BROKER_URL = (redis_conn)
+CELERY_BROKER_URL = redis_conn
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = "json"
 CELERY_RESULT_BACKEND = CELERY_BROKER_URL
 CELERY_TIMEZONE = 'UTC'
-CELERY_BROKER_TRANSPORT_OPTIONS = conn2
-
+CELERY_BROKER_TRANSPORT_OPTIONS = {
+    "redis_backend_use_ssl": {
+        "ssl_cert_reqs": "CERT_NONE"  # For local development; use CERT_REQUIRED in production
+    }
+}
 
 TEMPLATES = [
     {
