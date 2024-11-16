@@ -6,7 +6,7 @@ from celery import Celery
 # set default Django settings module for 'celery' program.
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'taskmanager.settings')
 
-app = Celery('taskmanager')
+app = Celery('TMS')
 
 # Using a string here means the worker doesn't have to serialize
 # the configuration object to child processes.
