@@ -10,13 +10,13 @@ def send_task_notification(task_id, user_email):
     # Send email (this could be replaced with Slack/Telegram notification)
 
     print("Task task task")
-    #send_mail(
-     #   'Task Notification',
-      #  message,
-       # 'noreply@example.com',
-        #[user_email],
-        #fail_silently=False,
-    #)
+    send_mail(
+        'Task Notification',
+        message,
+        'noreply@example.com',
+        [user_email],
+        fail_silently=False,
+    )
 
     # Optionally, create a notification in the database
     Notification.objects.create(

@@ -3,7 +3,7 @@ from .models import Task, Notification
 from django.contrib.auth.models import User
 
 class TaskSerializer(serializers.ModelSerializer):
-    assigned_to = serializers.ReadOnlyField(source='assigned_to.username')
+    #assigned_to = serializers.CharField(source='assigned_to.username', required=True)
     class Meta:
         model = Task
         fields = ['id', 'title', 'description', 'assigned_to', 'priority', 'status', 'due_date', 'created_at', 'updated_at']

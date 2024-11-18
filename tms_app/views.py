@@ -17,6 +17,7 @@ class TaskViewSet(viewsets.ModelViewSet):
 
     @action(detail=True, methods=['post'])
     def send_notification(self, request, pk=None):
+        print("Notification triggered")
         task = self.get_object()
         send_task_notification.delay(task.id, task.assigned_to.email)
         print("Notification sent")
